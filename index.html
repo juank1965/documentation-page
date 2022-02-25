@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/estilos.css".css">
+    <title>Página Documentación Técnica</title>
+  </head>
+  <body>
+    <nav id="navbar">
+      <header>Documentación Express</header>
+      <ul>
+        <li><a class="nav-link" href="#Instalación">Instalación</a></li>
+        <li>
+          <a class="nav-link" href="#Hola_mundo_en_Express"
+            >Hola Mundo en Express</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="#Generador_de_aplicaciones_Express"
+            >Generador de aplicaciones Express</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="#Enrutamiento_básico"
+            >Enrutamiento básico</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="#Sirviendo_archivos_estáticos_en_Express"
+            >Sirviendo archivos estáticos en Express</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="#Ejemplos_de_Express"
+            >Ejemplos de Express</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="#Preguntas_frecuentes"
+            >Preguntas frecuentes</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <main id="main-doc">
+      <section class="main-section" id="Instalación">
+        <header>Instalación</header>
+        <article>
+          <p>
+            Suponiendo que ya instaló Node.js , cree un directorio para
+            almacenar su aplicación y conviértalo en su directorio de trabajo.
+          </p>
+
+          <code> $ mkdir myapp</code><code>$cd myapp </code>
+
+          <p>
+            Use el npm initcomando para crear un package.jsonarchivo para su
+            aplicación. Para obtener más información sobre cómo
+            package.jsonfunciona, consulte Especificaciones del manejo de
+            package.json de npm.
+          </p>
+          <code>$ npm init</code>
+          <p>
+            Este comando le solicita una serie de cosas, como el nombre y la
+            versión de su aplicación. Por ahora, simplemente puede presionar
+            RETORNO para aceptar los valores predeterminados para la mayoría de
+            ellos, con la siguiente excepción:
+          </p>
+          <code>entry point: (index.js)</code>
+          <p>
+            Introduzca app.js, o el nombre que desee que tenga el archivo
+            principal. Si desea que sea index.js, presione ENTER para aceptar el
+            nombre de archivo predeterminado sugerido. Ahora instale Express en
+            el directorio myapp y guárdelo en la lista de dependencias. Por
+            ejemplo:
+          </p>
+          <code>$ npm install express</code>
+          <p>
+            Para instalar Express temporalmente y no agregarlo a la lista de
+            dependencias:
+          </p>
+          <code>$ npm install express --no-save</code>
+          <code>
+            De manera predeterminada, con la versión npm 5.0+ npm install agrega el módulo a la lista de dependencias en el archivo package.json; con versiones anteriores de npm, debe especificar la opción -save explícitamente. Al ejecutar npm install en el directorio de la aplicación se instalarán automáticamente los módulos en la lista de dependencias.
+          </code>
+        </article>
+      </section>
+      <section class="main-section" id="Hola_mundo_en_Express">
+        <header>Hola mundo en Express</header>
+        <article>
+          <code>
+            Incrustado a continuación es esencialmente la aplicación Express más simple que puede crear. Es una aplicación de un solo archivo, no lo que obtendría si usa el generador Express , que crea el andamiaje para una aplicación completa con numerosos archivos JavaScript, plantillas de Jade y subdirectorios para varios propósitos.</code>
+
+          <pre><code>
+             1 const express = require('express') 
+             2 const app = express() 
+             3 const port = 3000 
+             4 
+             5 app.get('/', (req, res) => {
+             6 res.send('Hello World!') 
+             7 })
+             8 
+             9 app.listen(port, () => { 
+            10 console.log(`Example app listening on port ${port}`) 
+            11 })
+          </code></pre>
+
+          <p>
+            Esta aplicación inicia un servidor y escucha en el puerto 3000 las
+            conexiones. La aplicación responde con "¡Hola mundo!" para
+            solicitudes a la URL raíz ( /) o <b>ruta</b>. Para cualquier otra
+            ruta, responderá con un <b>404 No encontrado</b>.
+          </p>
+          <p>
+            El ejemplo anterior es en realidad un servidor en funcionamiento:
+            siga adelante y haga clic en la URL que se muestra. Obtendrá una
+            respuesta, con registros en tiempo real en la página, y cualquier
+            cambio que realice se reflejará en tiempo real. Esto funciona con
+            RunKit , que proporciona un área de juegos JavaScript interactiva
+            conectada a un entorno de nodo completo que se ejecuta en su
+            navegador web. A continuación se encuentran las instrucciones para
+            ejecutar la misma aplicación en su máquina local.
+          </p>
+          <code>
+            RunKit es un servicio de terceros que no está afiliado al proyecto
+            Express.</code
+          >
+          <h5><b>Ejecución local</b></h5>
+          <p>
+            Primero crea un directorio llamado myapp, cámbialo y ejecuta npm
+            init. Luego instále express como una dependencia, según la
+            <i>guía de instalación</i>.
+          </p>
+          <p>En el directorio myapp, cree un archivo llamado <b>app.js</b> y copie el
+          código del ejemplo anterior.</p> 
+          <code>La req(solicitud) y la res (respuesta) son exactamente los mismos objetos que proporciona Node, por lo que puede invocar req.pipe(), req.on('data', callback)y cualquier otra cosa que haría sin la participación de Express.</code>
+          <p> Ejecute la aplicación con el siguiente comando:</p> 
+          <code>$ node app.js</code> 
+          <p> Luego, cargue http://localhost:3000/ en un navegador para ver el resultado.</p>
+        </article>
+      </section>
+      <section class="main-section" id="Generador_de_aplicaciones_Express">
+        <header>Generador de aplicaciones Express</header>
+        <article>
+          <p> Utilice la herramienta de generación de aplicaciones, express-generator, para crear rápidamente un esqueleto de aplicación. Puede ejecutar el generador de aplicaciones con el comando npx (disponible en Node.js 8.2.0).</p>
+          <code>$ npx express-generator</code>
+          <p> Para versiones anteriores de Node, instale el generador de aplicaciones como un paquete npm global y luego inícielo:</p>
+          <pre><code>$ npm install -g express-generator
+            $ express
+          </code></pre>
+            
+          <p> Muestre las opciones del comando con la opción -h:</p>
+
+           <pre> <code>< $ express -h
+
+              Usage: express [options] [dir]
+
+              Options:
+
+                -h, --help          output usage information
+                    --version       output the version number
+                -e, --ejs           add ejs engine support
+                    --hbs           add handlebars engine support
+                    --pug           add pug engine support
+                -H, --hogan         add hogan.js engine support
+                    --no-view       generate without view engine
+                -v, --view <engine> add view <engine> support (ejs|hbs|hjs|jade|pug|twig|vash) (defaults to jade)
+                -c, --css <engine>  add stylesheet <engine> support (less|stylus|compass|sass) (defaults to plain css)
+                    --git           add .gitignore
+                -f, --force         force on non-empty directory </code></pre>
+
+          <p>Por ejemplo, lo siguiente crea una aplicación Express llamada <b>myapp</b>. La aplicación se creará en una carpeta llamada <b>myapp</b> en el directorio de trabajo actual y el motor de visualización se establecerá en <b>Pug</b> :</p> 
+
+          <pre><code> $ express --view=pug myapp
+
+              create : myapp
+              create : myapp/package.json
+              create : myapp/app.js
+              create : myapp/public
+              create : myapp/public/javascripts
+              create : myapp/public/images
+              create : myapp/routes
+              create : myapp/routes/index.js
+              create : myapp/routes/users.js
+              create : myapp/public/stylesheets
+              create : myapp/public/stylesheets/style.css
+              create : myapp/views
+              create : myapp/views/index.pug
+              create : myapp/views/layout.pug
+              create : myapp/views/error.pug
+              create : myapp/bin
+              create : myapp/bin/www </code></pre> 
+              <p> Luego instale las dependencias:</p>
+
+          <pre>
+            <code>
+              $ cd myapp
+              $ npm install
+            </code>
+          </pre>  
+            
+          <p> En MacOS o Linux, ejecute la aplicación con este comando:</p>
+
+         <code>$ DEBUG=myapp:* npm start</code> 
+         <p>En el símbolo del sistema de Windows, use este comando:</p>
+
+         <code> > set DEBUG=myapp:* & npm start</code>
+         <p>En Windows PowerShell, use este comando:</p>
+
+         <code>PS> $env:DEBUG='myapp:*'; npm start</code>
+         <p>Luego cargue http://localhost:3000/en su navegador para acceder a la aplicación.</p>
+
+         <p>La aplicación generada tiene la siguiente estructura de directorios:</p>
+        <code>    
+          .
+          ├── app.js
+          ├── bin
+          │   └── www
+          ├── package.json
+          ├── public
+          │   ├── images
+          │   ├── javascripts
+          │   └── stylesheets
+          │       └── style.css
+          ├── routes
+          │   ├── index.js
+          │   └── users.js
+          └── views
+              ├── error.pug
+              ├── index.pug
+              └── layout.pug
+
+          7 directories, 9 files </code>
+          <pre><code>La estructura de la aplicación creada por el generador es solo una de las muchas formas de estructurar las aplicaciones Express. Siéntase libre de usar esta estructura o modificarla para que se adapte mejor a sus necesidades.</code></pre>
+
+
+        </article>
+      </section>
+      <section class="main-section" id="Enrutamiento_básico">
+        <header>Enrutamiento básico</header>
+        <article>
+          <p><b>El enrutamiento</b> se refiere a determinar cómo responde una aplicación a una solicitud de un cliente a un punto final en particular, que es un URI (o ruta) y un método de solicitud HTTP específico (GET, POST, etc.).</p>
+
+          <p>Cada ruta puede tener una o más funciones de controlador, que se ejecutan cuando la ruta coincide.
+
+          La definición de ruta toma la siguiente estructura:</p>
+
+           <code><b>app</b>.METHOD(<b>PATH</b>, <b>HANDLER</b>)</code>
+            Donde:
+            <ul>
+              <li>app es una instancia de express.</li>
+              <li>METHODes un método de solicitud HTTP , en minúsculas.</li>
+              <li>PATHes una ruta en el servidor.</li>
+              <li>HANDLERes la función que se ejecuta cuando la ruta coincide.</li>
+            </ul>            
+            <code>Este tutorial asume que se crea una instancia de expressnamed appy que el servidor se está ejecutando. Si no está familiarizado con la creación de una aplicación y su inicio, consulte el ejemplo de <b>Hello world</b>.</code>
+
+             <p>Los siguientes ejemplos ilustran la definición de rutas simples.
+
+              Responda con Hello World!en la página de inicio:</p>
+
+              <code>app.get('/', (req, res) => {
+                res.send('Hello World!')
+              })</code>
+              <p>Responda a la solicitud POST en la ruta raíz ( /), la página de inicio de la aplicación:</p>
+
+              <code>app.post('/', (req, res) => {
+                res.send('Got a POST request')
+              })</code>
+              <p>Responder a una solicitud PUT a la ruta /user:</p>
+
+              <code>app.put('/user', (req, res) => {
+                res.send('Got a PUT request at /user')
+              })</code>
+              <p>Responda a una solicitud DELETE a la /userruta:</p>
+
+              <code>app.delete('/user', (req, res) => {
+                res.send('Got a DELETE request at /user')
+              })</code>
+              <p>Para obtener más detalles sobre el enrutamiento, consulte la guía de enrutamiento.</p>
+      </section>
+      <section
+        class="main-section"
+        id="Sirviendo_archivos_estáticos_en_Express"
+      >
+        <header>Sirviendo archivos estáticos en Express</header>
+        <p>Para servir archivos estáticos como imágenes, archivos CSS y archivos JavaScript, use la función <b>express.static</b> de middleware integrada en Express.
+
+        La firma de la función es:</p>
+
+        <code>express.static(root, [options])</code>
+
+        <p>El agumento root especifica el directorio raíz desde el cual servir activos estáticos. Para obtener más información sobre el optionsargumento, consulte <b>express.static</b> .
+
+        Por ejemplo, use el siguiente código para servir imágenes, archivos CSS y archivos JavaScript en un directorio llamado <b>public</b>:</p>
+
+        <code>app.use(express.static('public'))</code>
+        <p>Ahora, puede cargar los archivos que están en el directorio <b>public</b>:</p>
+
+        <code>http://localhost:3000/images/kitten.jpg
+          http://localhost:3000/css/style.css
+          http://localhost:3000/js/app.js
+          http://localhost:3000/images/bg.png
+          http://localhost:3000/hello.html</code>
+
+        <p>Express busca los archivos relativos al directorio estático, por lo que el nombre del directorio estático no forma parte de la URL.
+        Para utilizar varios directorios de activos estáticos, llame a la función express.static de middleware varias veces:</p>
+
+        <code>app.use(express.static('public'))
+        app.use(express.static('files'))</code>
+
+        <p>Express busca los archivos en el orden en que configuró los directorios estáticos con la express.staticfunción de middleware.
+
+        NOTA: Para obtener los mejores resultados, utilice un caché de proxy inverso para mejorar el rendimiento de servir activos estáticos.
+
+        Para crear un prefijo de ruta virtual (donde la ruta no existe realmente en el sistema de archivos) para los archivos a los que sirve la express.staticfunción, especifique una ruta de montaje para el directorio estático, como se muestra a continuación:</p>
+
+        <code>app.use('/static', express.static('public'))</code>
+
+        <p>Ahora, puede cargar los archivos que están en el publicdirectorio desde el /staticprefijo de la ruta.</p>
+
+        <code>http://localhost:3000/static/images/kitten.jpg
+          http://localhost:3000/static/css/style.css
+          http://localhost:3000/static/js/app.js
+          http://localhost:3000/static/images/bg.png
+          http://localhost:3000/static/hello.html</code>
+
+        <p>Sin embargo, la ruta que proporcione a la express.staticfunción es relativa al directorio desde donde inicia su nodeproceso. Si ejecuta la aplicación Express desde otro directorio, es más seguro usar la ruta absoluta del directorio que desea servir:</p>
+
+        <code>const path = require('path')
+
+        app.use('/static', express.static(path.join(__dirname, 'public')))</code>
+
+        <p>Para obtener más detalles sobre la serve-staticfunción y sus opciones, consulte serve-static .</p>
+
+      </section>
+      <section class="main-section" id="Ejemplos_de_Express">
+        <header>Ejemplos de Express</header>
+        <article>
+          <p>Esta página contiene una lista de ejemplos usando Express.</p>
+          <ul>
+        <li><a href="">auth</a> - Autenticación con usuario y contraseña</li>
+        <li><a href="">negociación de contenido</a> - negociación de contenido HTTP</li>
+        <li><a href="">cookies-sessions</a> - Trabajar con sesiones basadas en cookies</li>
+        <li><a href="">cookies</a> - Trabajar con cookies</li>
+        <li><a href="">descargas</a> - Transferencia de archivos al cliente</li>
+        <li><a href="">ejs</a> - Trabajar con plantillas JavaScript integradas (ejs)</li>
+        <li><a href="">error-pages</a> - Creación de páginas de error</li>
+        <li><a href="">error</a> - Trabajando con el middleware de error</li>
+        <li><a href="">hello-world</a> - Manejador de solicitudes simple</li>
+        <li><a href="">markdown</a> - Markdown como motor de plantillas</li>
+        <li><a href="">multi-router</a> - Trabajar con múltiples enrutadores Express</li>
+        <li><a href="">multipart</a> - Aceptar formularios codificados en varias partes</li>
+        <li><a href="">mvc</a> - Controladores de estilo MVC</li>
+        <li><a href="">en línea</a> : seguimiento de la actividad del usuario en línea con onliney redispaquetes</li>
+        <li><a href="">params</a> - Trabajar con parámetros de ruta</li>
+        <li><a href="">recurso</a> : múltiples operaciones HTTP en el mismo recurso</li>
+        <li><a href="">route-map</a> - Organizar rutas usando un mapa</li>
+        <li><a href="">route-middleware</a> - Trabajando con route middleware</li>
+        <li><a href="">route-separation</a> - Organización de rutas por cada recurso</li>
+        <li><a href="">búsqueda</a> - API de búsqueda</li>
+        <li><a href="">session</a> - Sesiones de usuario</li>
+        <li><a href="">static-files</a> - Sirviendo archivos estáticos</li>
+        <li><a href="">vhost</a> - Trabajar con hosts virtuales</li>
+        <li><a href="">view-constructor</a> - Renderizar vistas dinámicamente</li>
+        <li><a href="">view-locals</a> - Guardar datos en el objeto de solicitud entre llamadas de middleware</li>
+        <li><a href="">servicio web</a> - Servicio de API simple</li>
+      </ul>
+
+      <h4><b>Ejemplos adicionales</b></h4> 
+      <p>Estos son algunos ejemplos adicionales con integraciones más amplias.</p>
+
+      <code>Advertencia : esta información hace referencia a sitios, productos o módulos de terceros que no son mantenidos por el equipo de Expressjs. La lista aquí no constituye un respaldo o recomendación del equipo de proyecto de Expressjs.</code>
+
+          <ul>
+            <li><a href="">prisma-express-graphql</a> - API GraphQL con el express-graphqluso de Prisma como ORM</li>
+            <li><a href="">prisma-fullstack</a> : aplicación Fullstack con Next.js que usa Prisma como ORM</li>
+            <li><a href="">prisma-rest-api-js</a> - REST API con Express en JavaScript usando Prisma como ORM</li>
+            <li><a href="">prisma-rest-api-ts</a> - API REST con Express en TypeScript usando Prisma como ORM</li>             
+          </ul>  
+
+        </article>
+      </section>
+      <section class="main-section" id="Preguntas_frecuentes">
+        <header>Preguntas frecuentes</header>
+        <article>
+          <h5><b>¿Cómo debo estructurar mi solicitud?</b></h5>
+
+          No hay una respuesta definitiva a esta pregunta. La respuesta depende de la escala de su aplicación y del equipo involucrado. Para ser lo más flexible posible, Express no hace suposiciones en términos de estructura.
+
+          Las rutas y otra lógica específica de la aplicación pueden vivir en tantos archivos como desee, en cualquier estructura de directorio que prefiera. Vea los siguientes ejemplos para inspirarse:
+
+          <ul>
+            <li><a href="">listados de rutas</a></li>
+            <li><a href="">Mapa de ruta</a></li>
+            <li><a href="">Controladores de estilo MVC</a></li>
+          </ul>
+          
+
+          Además, existen extensiones de terceros para Express, que simplifican algunos de estos patrones:
+
+          <ul>
+            <li>Enrutamiento ingenioso</li>
+          </ul>
+          
+
+
+          <h5><b>¿Cómo defino los modelos?</b></h5>
+
+          Express no tiene noción de una base de datos. Este concepto se deja en manos de módulos Node de terceros, lo que le permite interactuar con casi cualquier base de datos.
+
+          Consulte <a href="">LoopBack</a> para conocer un marco basado en Express que se centra en los modelos.
+
+          
+          <h5><b>¿Cómo puedo autenticar a los usuarios?</b></h5>
+
+          La autenticación es otra área obstinada en la que Express no se aventura. Puede utilizar cualquier esquema de autenticación que desee. Para un esquema simple de nombre de usuario/contraseña, <a href="">vea este ejemplo</a>.
+
+          
+          <h5><b>¿Qué motores de plantillas admite Express?</b></h5>
+
+          Express es compatible con cualquier motor de plantilla que se ajuste a la (path, locals, callback)firma. Para normalizar las interfaces del motor de plantillas y el almacenamiento en caché, consulte el proyecto de <a href="">consolidar</a>.js para obtener asistencia. Es posible que los motores de plantillas que no figuran en la lista sigan siendo compatibles con la firma Express.
+
+          Para obtener más información, consulte <a href="">Uso de motores de plantillas con Express</a> .
+
+          
+          <h5><b>¿Cómo manejo las respuestas 404?</b></h5>
+
+          En Express, las respuestas 404 no son el resultado de un error, por lo que el middleware del controlador de errores no las capturará. Este comportamiento se debe a que una respuesta 404 simplemente indica la ausencia de trabajo adicional por hacer; en otras palabras, Express ejecutó todas las funciones y rutas de middleware y descubrió que ninguna de ellas respondía. Todo lo que necesita hacer es agregar una función de middleware en la parte inferior de la pila (debajo de todas las demás funciones) para manejar una respuesta 404:
+
+          <code>app.use((req, res, next) => {
+            res.status(404).send("Sorry can't find that!")
+          })</code>
+          
+          Agregue rutas dinámicamente en tiempo de ejecución en una instancia de express.Router() para que las rutas no sean reemplazadas por una función de middleware.
+
+          
+          <h5><b>¿Cómo configuro un controlador de errores?</b></h5>
+
+          El middleware de manejo de errores se define de la misma manera que otro middleware, excepto que tiene cuatro argumentos en lugar de tres; concretamente con la firma (err, req, res, next):
+
+          <code>app.use((err, req, res, next) => {
+            console.error(err.stack)
+            res.status(500).send('Something broke!')
+          })</code>
+
+          Para obtener más información, consulte <a href="">Gestión de errores</a> .
+
+          
+          <h5><b>¿Cómo renderizo HTML simple?</b></h5>
+
+          ¡Tú no! No hay necesidad de "renderizar" HTML con la res.render()función. Si tiene un archivo específico, use la res.sendFile()función. Si está sirviendo muchos activos desde un directorio, use la express.static() función de middleware.
+        </article>
+      </section>
+    </main>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
+</html>
